@@ -3,6 +3,9 @@ require("babel-register")({
     presets: [ 'es2015' ]
 });
 
+const baseWidth = 1200;
+const baseHeight = 800;
+
 exports.config = {
     /**
      *  Uncomment ONE of the following to connect to: seleniumServerJar OR directConnect. Protractor
@@ -14,17 +17,9 @@ exports.config = {
     SELENIUM_PROMISE_MANAGER: false,
 
     specs: ['specs/*Spec.js'],
-    baseUrl: 'https://qualityshepherd.com',
+//    baseUrl: '',
     framework: 'jasmine',
-
-    onPrepare: () => {
-        const SpecReporter = require('jasmine-spec-reporter').SpecReporter;
-        jasmine.getEnv().addReporter(new SpecReporter({
-            spec: {
-                displayStacktrace: true
-            }
-        }));
-    },
+    seleniumAddress: 'http://localhost:4444/wd/hub',
 
     capabilities: {
         browserName: 'chrome',
@@ -45,6 +40,20 @@ exports.config = {
                 'password_manager_enabled': false
             }
         }
+    },
+
+    onPrepare: () => {
+        // non-angular app
+        browser.ignoreSynchronization = true;
+        // set browser window size for consistency...
+        browser.manage().window().setSize(baseWidth, baseHeight);
+
+        const SpecReporter = require('jasmine-spec-reporter').SpecReporter;
+        jasmine.getEnv().addReporter(new SpecReporter({
+            spec: {
+                displayStacktrace: true
+            }
+        }));
     },
 
     jasmineNodeOpts: {
