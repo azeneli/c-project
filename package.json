@@ -4,9 +4,12 @@
   "description": "Trial Project for Canoe",
   "main": "conf.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "protractor": "node_modules/.bin/protractor",
+    "prepare": "node_modules/.bin/webdriver-manager update",
+    "update": "node_modules/.bin/webdriver-manager update",
+    "test": "conf.js"
   },
-  "author": "",
+  "author": "Anri Zeneli",
   "license": "ISC",
   "dependencies": {
     "chance": "^1.1.7",
