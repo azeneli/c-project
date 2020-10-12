@@ -66,23 +66,24 @@ describe('Vue Demo From Test Suite', () => {
 		expect(true).toBe(true);
 	});
 
-	xit('should allow me to check the Terms & Conditions', async () => {
+	it('should allow me to check the Terms & Conditions', async () => {
 		const checkBoxEl = $('#terms');
 		checkBoxEl.click();
+		await browser.sleep(3000);
 
-		expect(checkBoxEl).getAttribute('checked').toBeTruthy();
+		expect(checkBoxEl.isSelected()).toBe(true);
 	});
 
 
-	it('should allow me to Submit the from with the required fields completed', async () => {
+	xit('should allow me to Submit the from with the required fields completed', async () => {
 		const submitButton = $('button[type="submit"]');
 		submitButton.click();
 
 		await browser.sleep(3000);
-		
-		expect(true).toBe(true);
-	});
+		const successSubmissionEl = $('div.alert.alert-success');
 
+		expect(successSubmissionEl).isPresent().toBe(true);
+	});
 
 
 });
