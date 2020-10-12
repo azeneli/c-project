@@ -16,7 +16,7 @@ exports.config = {
     directConnect: true,
     SELENIUM_PROMISE_MANAGER: false,
 
-    specs: ['specs/*Spec.js'],
+    specs: ['specs/vueDemoFormSpec.js'],
 //    baseUrl: '',
     framework: 'jasmine',
     seleniumAddress: 'http://localhost:4444/wd/hub',
