@@ -3,8 +3,8 @@ require("babel-register")({
     presets: [ 'es2015' ]
 });
 
-const baseWidth = 1200;
-const baseHeight = 800;
+const baseWidth = 1400;
+const baseHeight = 1000;
 
 exports.config = {
     /**
