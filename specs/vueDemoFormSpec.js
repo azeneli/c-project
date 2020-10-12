@@ -1,4 +1,4 @@
-import basePage from '../pages/basePage';
+import vueFormPage from '../pages/vueFormPage';
 import Chance from 'chance';
 
 const chance = new Chance();
@@ -6,10 +6,13 @@ const chance = new Chance();
 describe('Vue Demo From Test Suite', () => {
 
 	describe('Tests with valid data entered', () => {
+
+		beforeEach(async () => {
+			await vueFormPage.goto();
+		});
+
 		it('should navigate to the form url', async () => {
 			const url = 'https://teroauralinna.github.io/vue-demo-form/'
-			browser.get(url);
-			await browser.sleep(3000);
 
 			expect(browser.getCurrentUrl()).toBe(url);
 		});
@@ -84,7 +87,7 @@ describe('Vue Demo From Test Suite', () => {
 		});
 	});	
 
-	describe('Tests with in-valid data entered', () => {
+	xdescribe('Tests with in-valid data entered', () => {
 
 		it('should navigate to the form url', async () => {
 			const url = 'https://teroauralinna.github.io/vue-demo-form/';
