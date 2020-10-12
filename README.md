@@ -14,7 +14,7 @@ npm i
 
 To Run Tests
 ```
-npm run protractor conf.js   
+npm test   
 ```
 
 ## Contributing
