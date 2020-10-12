@@ -12,7 +12,7 @@ describe('Vue Demo From Test Suite', () => {
 		expect(browser.getCurrentUrl()).toBe(url);
 	});
 
-	it('should allow me to enter First name', async () => {
+	xit('should allow me to enter First name', async () => {
 		const firstName = chance.first();
 		const firstNameEl = $('#firstName');
 
@@ -25,7 +25,7 @@ describe('Vue Demo From Test Suite', () => {
 		expect(result).toBe(firstName);
 	});
 
-	it('should allow me to enter Last name', async () => {
+	xit('should allow me to enter Last name', async () => {
 		const lastName = chance.last();
 		const lastNameEl = $('#lastName');
 
@@ -39,7 +39,7 @@ describe('Vue Demo From Test Suite', () => {
 
 	});
 
-	it('should allow me to enter an Email address', async () => {
+	xit('should allow me to enter an Email address', async () => {
 		const email = chance.email();
 		const emailEl = $('#email');
 		
@@ -54,17 +54,34 @@ describe('Vue Demo From Test Suite', () => {
 
 	xit('should allow me to select a Subscription type', async () => {
 		const subTypeEl = $('#type');
-			
+		subTypeEl.click();	
 
-
-
+		//const subTypeFree = $('')	
+		element(by.cssContainingText('option', 'free')).click();
+		await browser.sleep(3000);
+		$('#app').click();
+		//subTypeEl.element(by.cssContainingText('option', 'free')).click();
+		
 
 		expect(true).toBe(true);
 	});
 
+	xit('should allow me to check the Terms & Conditions', async () => {
+		const checkBoxEl = $('#terms');
+		checkBoxEl.click();
+
+		expect(checkBoxEl).getAttribute('checked').toBeTruthy();
+	});
 
 
+	it('should allow me to Submit the from with the required fields completed', async () => {
+		const submitButton = $('button[type="submit"]');
+		submitButton.click();
 
+		await browser.sleep(3000);
+		
+		expect(true).toBe(true);
+	});
 
 
 
