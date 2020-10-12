@@ -2,17 +2,17 @@
   "name": "canoe-project",
   "version": "1.0.0",
   "description": "Trial Project for Canoe",
-  "main": "conf.js",
   "scripts": {
     "protractor": "node_modules/.bin/protractor",
     "prepare": "node_modules/.bin/webdriver-manager update",
     "update": "node_modules/.bin/webdriver-manager update",
-    "test": "conf.js"
+    "test": "protractor conf.js"
   },
   "author": "Anri Zeneli",
   "license": "ISC",
   "dependencies": {
     "chance": "^1.1.7",
+    "chromedriver": "^86.0.0",
     "jasmine-spec-reporter": "^6.0.0",
     "protractor": "^7.0.0",
     "protractor-flake": "^4.0.0"
