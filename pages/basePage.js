@@ -1,3 +1,4 @@
+
 export default class BasePage {
 	constructor() {
         /**
@@ -14,20 +15,30 @@ export default class BasePage {
 
 	}
 
-
-	async loaded() {
-		return browser.wait(async () => {
-			return await.thispageLoaded();
-		}, this.timeout.xl, 'timeout: waiting for page to load. Url:' this.url);
-	}
-
+    async loaded() {
+        return browser.wait(async () => {
+            return await this.pageLoaded();
+        }, this.timeout.xl, 'timeout: waiting for page to load. The url is: ' + this.url);
+    }
 
 	async goto() {
-		await browser.get(this.url, this.timeout.xl);
-		return await this.loaded();
+		try {
+			await browser.get(this.url, this.timeout.xl);
+			console.log('working')
+			return await this.loaded();
+		} catch(e) {
+			console.log('catch an error', e);
+		}
 	}
 
+	async waitAndClick(element) {
+        await this.isClickable(element);
+        await element.click();
+    }
 
+    isClickable(locator) {
+        return protractor.ExpectedConditions.elementToBeClickable(locator);
+    }
 
 
 }
