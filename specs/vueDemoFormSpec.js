@@ -4,6 +4,10 @@ import Chance from 'chance';
 const chance = new Chance();
 
 describe('Vue Demo From Test Suite', () => {
+	const firstName = chance.first();
+	const lastName = chance.last();
+	const email = chance.email();
+	const submitButton = $('button[type="submit"]');
 
 	describe('Tests with valid data entered', () => {
 		it('should navigate to the form url', async () => {
@@ -14,7 +18,6 @@ describe('Vue Demo From Test Suite', () => {
 		});
 
 		it('should allow me to enter First name', async () => {
-			const firstName = chance.first();
 			const firstNameEl = $('#firstName');
 			await browser.sleep(2000);
 			vueFormPage.fillInput(firstNameEl, firstName);
@@ -24,7 +27,6 @@ describe('Vue Demo From Test Suite', () => {
 		});
 
 		it('should allow me to enter Last name', async () => {
-			const lastName = chance.last();
 			const lastNameEl = $('#lastName');
 			vueFormPage.fillInput(lastNameEl, lastName);
 
@@ -35,7 +37,6 @@ describe('Vue Demo From Test Suite', () => {
 		});
 
 		it('should allow me to enter an Email address', async () => {
-			const email = chance.email();
 			const emailEl = $('#email');
 			vueFormPage.fillInput(emailEl, email);
 		
@@ -71,7 +72,6 @@ describe('Vue Demo From Test Suite', () => {
 
 
 		it('should allow me to Submit the from with the required fields completed', async () => {
-			const submitButton = $('button[type="submit"]');
 			vueFormPage.waitAndClick(submitButton);
 			
 			await browser.sleep(3000);
@@ -88,9 +88,7 @@ describe('Vue Demo From Test Suite', () => {
 		})
 
 		it('should not allow me to proceed with No Data Entered', async () => {
-			const submitButton = $('button[type="submit"]');
 			vueFormPage.waitAndClick(submitButton);
-
 			await browser.sleep(3000);
 
 			const alertDangerEl = $('div.alert.alert-danger');
@@ -99,14 +97,11 @@ describe('Vue Demo From Test Suite', () => {
 
 		it('should not proceed if you did Not Complete all the forms', async () => {
 			await browser.sleep(3000);
-
-			const firstName = chance.first();
 			const firstNameEl = $('#firstName');
 			vueFormPage.fillInput(firstNameEl, firstName);
 
 			await browser.sleep(3000);
 
-			const lastName = chance.last();
 			const lastNameEl = $('#lastName');	
 			vueFormPage.fillInput(lastNameEl, lastName);
 
@@ -114,9 +109,7 @@ describe('Vue Demo From Test Suite', () => {
 			const emailEl = $('#email');
 			vueFormPage.fillInput(emailEl, email);
 
-
-			const submitButton = $('button[type="submit"]');
-			submitButton.click();
+			vueFormPage.waitAndClick(submitButton);
 			await browser.sleep(3000);
 
 			const alertDangerEl = $('div.alert.alert-danger');
@@ -128,17 +121,14 @@ describe('Vue Demo From Test Suite', () => {
 
 			const emailEl = $('#email');
 			const emailText = 'asdfasffdafdsfa@';
-			vueFormPage.fillInput(emailEl, email);
+			vueFormPage.fillInput(emailEl, emailText);
 
-			const submitButton = $('button[type="submit"]');
-			submitButton.click();
+			vueFormPage.waitAndClick(submitButton);
 			await browser.sleep(3000);
 
 			const invalidEmailWarning = $('#email div.invalid-feedback');
 			expect(invalidEmailWarning.isPresent()).toBe(true);
 		});
-		
-
 	});	
 
 });
