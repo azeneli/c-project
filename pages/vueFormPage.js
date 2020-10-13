@@ -8,14 +8,6 @@ class VueFromPage extends BasePage {
 		this.pageLoaded = this.isClickable($('#app'));
 	}
 
-	test(){
-		const r = console.log('hello');
-		return r;
-	}
-
-
-
-
 
 }
 
