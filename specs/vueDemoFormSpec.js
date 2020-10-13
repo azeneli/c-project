@@ -7,11 +7,12 @@ describe('Vue Demo From Test Suite', () => {
 
 	describe('Tests with valid data entered', () => {
 
-		beforeEach(async () => {
-			await vueFormPage.goto();
-		});
+		// beforeEach(async () => {
+		// 	await vueFormPage.goto();
+		// });
 
 		it('should navigate to the form url', async () => {
+			await vueFormPage.goto();
 			const url = 'https://teroauralinna.github.io/vue-demo-form/'
 
 			expect(browser.getCurrentUrl()).toBe(url);
