@@ -31,10 +31,21 @@ export default class BasePage {
 		}
 	}
 
+	// write a function that takes the el and send the keys
+	async fillInput(el, text) {
+		try {
+			el.sendKeys(text);
+		} catch(e) {
+			console.log('catch an error', e);
+		}	
+	}
+
+	// use this for clicking el
 	async waitAndClick(element) {
         await this.isClickable(element);
         await element.click();
     }
+
 
     isClickable(locator) {
         return protractor.ExpectedConditions.elementToBeClickable(locator);
