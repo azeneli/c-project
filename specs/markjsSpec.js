@@ -13,7 +13,7 @@ describe('MarkJs configurator Test Suite', () => {
 			expect(browser.getCurrentUrl()).toBe(url);
 		});
 
-		it('should seach for the word "lorem" and assert correct number of results', async () => {
+		it('should seach for the word "lorem" Case Insensitive', async () => {
 			const keyword = 'lorem';
 			const keywordInputEl = $('#keyword');
 			await keywordInputEl.clear();
@@ -35,10 +35,28 @@ describe('MarkJs configurator Test Suite', () => {
 			expect(count).toBe(7);
 		});
 
-		xit('should search for word ', () => {
-			// this is case senstive
-			// new to re-work regex;
-			//const count = (newStr.match(/lorem/g) || []).length;
+		it('should search for word "lorem" Case Sensitive', async () => {
+			
+			const keyword = 'lorem';
+			const keywordInputEl = $('#keyword');
+			await keywordInputEl.clear();
+			await keywordInputEl.sendKeys(keyword);
+
+
+			const caseSenstiveOption = $('#form-keyword-caseSensitive');
+			caseSenstiveOption.click();	
+
+			await browser.sleep(3000);
+			const markSubmitButton = $('button[type="submit"]');
+			markSubmitButton.click();
+			await browser.sleep(3000);
+
+			const t = await $$('div.panel-body.context p').getText();
+			const newStr = JSON.stringify(t);
+			const count = (newStr.match(/lorem/g) || []).length;
+			console.log(count);
+
+			expect(count).toBe(1);
 		});
 
 
