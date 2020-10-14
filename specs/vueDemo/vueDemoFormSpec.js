@@ -19,7 +19,6 @@ describe('Vue Demo From Test Suite', () => {
 
 		it('should allow me to enter First name', async () => {
 			const firstNameEl = $('#firstName');
-			await browser.sleep(2000);
 			vueFormPage.fillInput(firstNameEl, firstName);
 
 			const result = firstNameEl.getAttribute('text');
@@ -30,8 +29,6 @@ describe('Vue Demo From Test Suite', () => {
 			const lastNameEl = $('#lastName');
 			vueFormPage.fillInput(lastNameEl, lastName);
 
-			await browser.sleep(3000);
-
 			const result = lastNameEl.getAttribute('text');
 			expect(result).toBe(lastName);
 		});
@@ -39,8 +36,6 @@ describe('Vue Demo From Test Suite', () => {
 		it('should allow me to enter an Email address', async () => {
 			const emailEl = $('#email');
 			vueFormPage.fillInput(emailEl, email);
-		
-			await browser.sleep(3000);
 
 			const result = emailEl.getAttribute('email');
 			expect(result).toBe(emailEl);
@@ -98,7 +93,6 @@ describe('Vue Demo From Test Suite', () => {
 			const lastNameEl = $('#lastName');	
 			vueFormPage.fillInput(lastNameEl, lastName);
 
-			const email = chance.email();
 			const emailEl = $('#email');
 			vueFormPage.fillInput(emailEl, email);
 
