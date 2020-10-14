@@ -16,18 +16,16 @@ describe('MarkJs configurator Test Suite', () => {
 		it('should seach for the word "lorem" Case Insensitive', async () => {
 			const keyword = 'lorem';
 			const keywordInputEl = $('#keyword');
-			await keywordInputEl.clear();
-			await keywordInputEl.sendKeys(keyword);
+			markjsConfiguratorPage.inputText(keywordInputEl, keyword);	
 
 			const markSubmitButton = $('button[type="submit"]');
 			markSubmitButton.click();
 
+			// <mark data-markjs="true">lorem</mark>
+
 			const t = await $$('div.panel-body.context p').getText();
 			const newStr = JSON.stringify(t);
 			
-
-			// this is case senstive
-			// new to re-work regex;
 			const count = (newStr.match(/Lorem|lorem|Lörem/gi) || []).length;
 			console.log(count);
 
@@ -36,19 +34,17 @@ describe('MarkJs configurator Test Suite', () => {
 		});
 
 		it('should search for word "lorem" Case Sensitive', async () => {
-			
 			const keyword = 'lorem';
 			const keywordInputEl = $('#keyword');
-			await keywordInputEl.clear();
-			await keywordInputEl.sendKeys(keyword);
-
+			markjsConfiguratorPage.inputText(keywordInputEl, keyword);	
 
 			const caseSenstiveOption = $('#form-keyword-caseSensitive');
 			caseSenstiveOption.click();	
 
-			await browser.sleep(3000);
 			const markSubmitButton = $('button[type="submit"]');
-			markSubmitButton.click();
+			markjsConfiguratorPage.waitAndClick(markSubmitButton);
+
+			
 			await browser.sleep(3000);
 
 			const t = await $$('div.panel-body.context p').getText();
