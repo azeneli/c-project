@@ -24,7 +24,6 @@ export default class BasePage {
 	async goto() {
 		try {
 			await browser.get(this.url, this.timeout.xl);
-			console.log('working')
 			return await this.loaded();
 		} catch(e) {
 			console.log('catch an error', e);
