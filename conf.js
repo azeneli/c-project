@@ -15,10 +15,19 @@ exports.config = {
     //seleniumServerJar: "node_modules/protractor/node_modules/webdriver-manager/selenium/selenium-server-standalone-3.4.0.jar",
     directConnect: true,
     SELENIUM_PROMISE_MANAGER: false,
-
-    specs: ['specs/vueDemoFormSpec.js'],
-//    baseUrl: '',
+    // specs: [
+    //     'specs/*/vueDemoFormSpec.js',
+    //     'specs/*/markjsSpec.js'
+    // ],
     framework: 'jasmine',
+    suites: {
+        vueDemoForm: ['specs/vueDemo/vueDemoFormSpec.js'],
+        markjsConfigurator: ['specs/markjsConfigurator/markjsSpec.js'],
+        both: [
+            'specs/vueDemo/vueDemoFormSpec.js',
+            'specs/markjsConfigurator/markjsSpec.js'    
+        ]
+    },
     seleniumAddress: 'http://localhost:4444/wd/hub',
 
     capabilities: {
