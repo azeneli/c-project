@@ -48,7 +48,7 @@ export default class BasePage {
      */
 	async fillInput(el, text) {
 		try {
-			el.sendKeys(text);
+			await el.sendKeys(text);
 		} catch(e) {
 			console.log('catch an error', e);
 		}	
