@@ -6,7 +6,9 @@
     "protractor": "node_modules/.bin/protractor",
     "prepare": "node_modules/.bin/webdriver-manager update",
     "update": "node_modules/.bin/webdriver-manager update",
-    "test": "protractor conf.js"
+    "test": "protractor conf.js --suite both",
+    "vueDemo": "protractor conf.js --suite vueDemoForm",
+    "markJsConfig": "protractor conf.js --suite markjsConfigurator"
   },
   "author": "Anri Zeneli",
   "license": "ISC",
