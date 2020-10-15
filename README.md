@@ -12,10 +12,20 @@ npm i
 
 ## Usage
 
-To Run Tests
+To Run Both Tests 
 ```
 npm test   
 ```
+To Run Tests Separetely
+
+```
+npm run vueDemo   
+```
+
+```
+npm run markJsConfig   
+```
+
 
 ## Troubleshooting
 -run node -v and make sure your node version is 8.x.x or greater
