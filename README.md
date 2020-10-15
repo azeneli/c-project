@@ -17,10 +17,13 @@ To Run Tests
 npm test   
 ```
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+## Troubleshooting
+-run node -v and make sure your node version is 8.x.x or greater
+-Need to have Chrome Browser Version 86
 
-Please make sure to update tests as appropriate.
+- If not able to run tests afer 'npm test' then run: node_modules/.bin/webdriver-manager update
+- Then try to run 'npm test' again
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
