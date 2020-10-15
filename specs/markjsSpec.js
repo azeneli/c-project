@@ -14,18 +14,17 @@ describe('MarkJs configurator Test Suite', () => {
 		});
 
 		it('should seach for the word "lorem" Case Insensitive', async () => {
+			await browser.sleep(2000);
 			const keyword = 'lorem';
 			const keywordInputEl = $('#keyword');
 			markjsConfiguratorPage.inputText(keywordInputEl, keyword);	
 
-			const markSubmitButton = $('button[type="submit"]');
+			const markSubmitButton = $$('button[type="submit"]').first();
 			markSubmitButton.click();
 
-			// <mark data-markjs="true">lorem</mark>
-
+			// retrive with with the mark tag & the value -> get the text -> see how that goes
 			const t = await $$('div.panel-body.context p').getText();
 			const newStr = JSON.stringify(t);
-			
 			const count = (newStr.match(/Lorem|lorem|Lörem/gi) || []).length;
 			console.log(count);
 
@@ -36,23 +35,20 @@ describe('MarkJs configurator Test Suite', () => {
 		it('should search for word "lorem" Case Sensitive', async () => {
 			const keyword = 'lorem';
 			const keywordInputEl = $('#keyword');
-			markjsConfiguratorPage.inputText(keywordInputEl, keyword);	
-
+			keywordInputEl.clear();
+			keywordInputEl.sendKeys(keyword);
+	
 			const caseSenstiveOption = $('#form-keyword-caseSensitive');
 			caseSenstiveOption.click();	
+	
+			const markSubmitButton = $$('button[type="submit"]').first();
+			markSubmitButton.click();
 
-			const markSubmitButton = $('button[type="submit"]');
-			markjsConfiguratorPage.waitAndClick(markSubmitButton);
-
-			
 			await browser.sleep(3000);
 
-			const t = await $$('div.panel-body.context p').getText();
-			const newStr = JSON.stringify(t);
-			const count = (newStr.match(/lorem/g) || []).length;
-			console.log(count);
-
-			expect(count).toBe(1);
+			// holds the highlighted word
+			const el = $$('mark[data-markjs=true]');
+			expect(el.isPresent()).toBe(true);
 		});
 
 
