@@ -7,6 +7,10 @@ Trial Project
 Use the package manager [npm](https://www.npmjs.com/) to install dependencies.
 
 ```bash
+git clone git@github.com:azeneli/c-project.git
+```
+
+```bash
 npm i
 ```
 
@@ -52,7 +56,7 @@ Note that you do not have to name it sel-chrome -> it can be a name of your choi
 
 When working on setting up the Docker image there was an [issue](https://bugs.chromium.org/p/chromedriver/issues/detail?id=2473#c6) that I kept running into. This potential bug was not allowing me run the tests inside the docker container. At least I'm assuming that it was this bug and not my code. 
 
-In order to run the tests in the Docker container I had to run them headless. Essentially running them without the browser UI.
+In order to run the tests in the Docker container I had to run them headless
 
 If you would like to see the Browser UI in action you will need to go to conf.js and remove these configurations: 
 				"--no-sandbox",
