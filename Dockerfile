@@ -39,7 +39,7 @@ RUN node_modules/protractor/bin/webdriver-manager update
 
 CMD ["npm", "test"]
 
-CMD ["npm", "run", "markJsConfig"]
+
 
 
 
