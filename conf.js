@@ -33,7 +33,7 @@ exports.config = {
     capabilities: {
         browserName: 'chrome',
         shardTestFiles: true,
-        maxInstances: 2,
+        maxInstances: 1,
         chromeOptions: {
             args: [
                 // disable chrome's wakiness
@@ -43,7 +43,7 @@ exports.config = {
                 'log-path=/tmp/chromedriver.log',
                 "--no-sandbox",
                 "--disable-dev-shm-usage",
-                "--headless"
+                "--headless",
             ],
             prefs: {
                 // disable chrome's annoying password manager
