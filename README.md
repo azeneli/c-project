@@ -1,7 +1,5 @@
 # Canoe Project
 
-Trial Project 
-
 ## Installation
 
 Use the package manager [npm](https://www.npmjs.com/) to install dependencies.
@@ -11,7 +9,7 @@ git clone git@github.com:azeneli/c-project.git
 ```
 
 ```bash
-npm i
+npm i or npm install
 ```
 
 ## Usage
@@ -34,6 +32,7 @@ To Run Tests in Docker
 
 - Requirements: Need to have [Docker](https://www.docker.com/products/docker-desktop) installed
 - Start Docker after installation
+- This will run both test suites by default
 
 ```
 docker build --tag sel-chrome .   
@@ -41,6 +40,31 @@ docker build --tag sel-chrome .
 
 ```
 docker run sel-chrome .   
+```
+
+To Run Tests with Docker Command:
+
+```
+docker run sel-chrom6 npm run vueDemo  
+```
+
+```
+docker run sel-chrom6 npm run markJsConfig  
+```
+
+To run separate test suites inside the container:
+
+```
+docker run -it --entrypoint /bin/bash sel-chrom
+```
+Once inside the container run either command: 
+
+```
+npm run vueDemo
+
+```
+```
+npm run markJsConfig   
 ```
 
 Note that you do not have to name it sel-chrome -> it can be a name of your choice
@@ -64,5 +88,4 @@ If you would like to see the Browser UI in action you will need to go to conf.js
                 "--headless",
 There you can see the browser UI in action. 
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+
