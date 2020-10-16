@@ -3,6 +3,11 @@ import Chance from 'chance';
 
 const chance = new Chance();
 
+/*
+* left a couple of browser.sleep for visibility's sake. 
+*  Otherwise the test will run too fast and will not be able to see the actions in the UI
+*/
+
 describe('Vue Demo From Test Suite', () => {
 	const firstName = chance.first();
 	const lastName = chance.last();
@@ -47,7 +52,6 @@ describe('Vue Demo From Test Suite', () => {
 			await subTypeEl.click();
 			await $('#type option[value=free]').click();
 
-			await browser.sleep(3000);
 			expect($('#type option[value=free]').getText()).toEqual('Free trial subscription');
 		});
 
@@ -62,7 +66,7 @@ describe('Vue Demo From Test Suite', () => {
 		it('should allow me to Submit the from with the required fields completed', async () => {
 			vueFormPage.waitAndClick(submitButton);
 			
-			await browser.sleep(3000);
+			await browser.sleep(2000);
 
 			const successSubmissionEl = $('div.alert.alert-success');
 			expect(successSubmissionEl.isPresent()).toBe(true);
@@ -77,18 +81,15 @@ describe('Vue Demo From Test Suite', () => {
 
 		it('should not allow me to proceed with No Data Entered', async () => {
 			vueFormPage.waitAndClick(submitButton);
-			await browser.sleep(3000);
+			await browser.sleep(2000);
 
 			const alertDangerEl = $('div.alert.alert-danger');
 			expect(alertDangerEl.isPresent()).toBe(true);
 		});
 
 		it('should not proceed if you did Not Complete all the forms', async () => {
-			await browser.sleep(3000);
 			const firstNameEl = $('#firstName');
 			vueFormPage.fillInput(firstNameEl, firstName);
-
-			await browser.sleep(3000);
 
 			const lastNameEl = $('#lastName');	
 			vueFormPage.fillInput(lastNameEl, lastName);
@@ -97,22 +98,20 @@ describe('Vue Demo From Test Suite', () => {
 			vueFormPage.fillInput(emailEl, email);
 
 			vueFormPage.waitAndClick(submitButton);
-			await browser.sleep(3000);
+			await browser.sleep(2000);
 
 			const alertDangerEl = $('div.alert.alert-danger');
 			expect(alertDangerEl.isPresent()).toBe(true);
 		});
 
 		it('should not allow me to proceed with an Invalid Email entered', async () => {
-			await browser.refresh(3000);
-
 			const emailEl = $('#email');
 			const emailText = 'asdfasffdafdsfa@';
 			vueFormPage.fillInput(emailEl, emailText);
 
 			vueFormPage.waitAndClick(submitButton);
-			await browser.sleep(3000);
-
+			await browser.sleep(2000);
+		
 			const invalidEmailWarning = $('#email div.invalid-feedback');
 			expect(invalidEmailWarning.isPresent()).toBe(true);
 		});

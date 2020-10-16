@@ -1,5 +1,10 @@
 import markjsConfiguratorPage from '../../pages/markjsConfiguratorPage';
 
+/*
+* left a couple of browser.sleep for visibility's sake. 
+*  Otherwise the test will run too fast and will not be able to see the actions in the UI
+*/
+
 describe('MarkJs configurator Test Suite', () => {
 	describe('Testing Search functionality', () => {
 
@@ -14,29 +19,19 @@ describe('MarkJs configurator Test Suite', () => {
 		});
 
 		it('should seach for the word "lorem" Case Insensitive', async () => {
-			await browser.sleep(2000);
-			const keyword = 'lorem';
-			const keywordInputEl = $('#keyword');
-			markjsConfiguratorPage.inputText(keywordInputEl, keyword);	
+			markjsConfiguratorPage.inputText();
 
 			const markSubmitButton = $$('button[type="submit"]').first();
 			markSubmitButton.click();
 
-			// retrive with with the mark tag & the value -> get the text -> see how that goes
-			const t = await $$('div.panel-body.context p').getText();
-			const newStr = JSON.stringify(t);
-			const count = (newStr.match(/Lorem|lorem|Lörem/gi) || []).length;
-			console.log(count);
+			const result = markjsConfiguratorPage.matchHighlightedWord();
 
 			await browser.sleep(2000);
-			expect(count).toBe(7);
+			expect(result).toBe(7);
 		});
 
 		it('should search for word "lorem" Case Sensitive', async () => {
-			const keyword = 'lorem';
-			const keywordInputEl = $('#keyword');
-			keywordInputEl.clear();
-			keywordInputEl.sendKeys(keyword);
+			markjsConfiguratorPage.inputText();
 	
 			const caseSenstiveOption = $('#form-keyword-caseSensitive');
 			caseSenstiveOption.click();	
@@ -44,14 +39,10 @@ describe('MarkJs configurator Test Suite', () => {
 			const markSubmitButton = $$('button[type="submit"]').first();
 			markSubmitButton.click();
 
-			await browser.sleep(3000);
-
-			// holds the highlighted word
+			await browser.sleep(2000);
 			const el = $$('mark[data-markjs=true]');
 			expect(el.isPresent()).toBe(true);
 		});
-
-
 	});	
 
 });
