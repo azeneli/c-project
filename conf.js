@@ -25,7 +25,7 @@ exports.config = {
         markjsConfigurator: ['specs/markjsConfigurator/markjsSpec.js'],
         both: [
             'specs/vueDemo/vueDemoFormSpec.js',
-            'specs/markjsConfigurator/markjsSpec.js'    
+            'specs/markjsConfigurator/markjsSpec.js',    
         ]
     },
     seleniumAddress: 'http://localhost:4444/wd/hub',
@@ -40,7 +40,10 @@ exports.config = {
                 '--disable-infobars',
                 '--disable-extensions',
                 'verbose',
-                'log-path=/tmp/chromedriver.log'
+                'log-path=/tmp/chromedriver.log',
+                "--no-sandbox",
+                "--disable-dev-shm-usage",
+                "--headless"
             ],
             prefs: {
                 // disable chrome's annoying password manager
