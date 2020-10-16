@@ -38,7 +38,7 @@ export default class BasePage {
 			await browser.get(this.url, this.timeout.xl);
 			return await this.loaded();
 		} catch(e) {
-			console.log('catch an error', e);
+			return new Error('catch an error', e);
 		}
 	}
 
@@ -50,7 +50,7 @@ export default class BasePage {
 		try {
 			await el.sendKeys(text);
 		} catch(e) {
-			console.log('catch an error', e);
+			return new Error('catch an error', e);
 		}	
 	}
 

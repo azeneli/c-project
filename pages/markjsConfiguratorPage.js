@@ -11,15 +11,31 @@ class MarkJsConfigurator extends BasePage {
 		this.keywordEl = $('#keyword');
 	}
 
-	async inputText(element, text) {
+	/*
+     * clears input, fill texts in the element that is selected. specifically for this spec
+     * @requires both `el` and `text` params supplied
+    */ 
+
+	async inputText() {
 		try {
-			element.clear();
-			element.sendKeys(text);
+			this.keywordEl.clear();
+			this.keywordEl.sendKeys(this.keyword);
 		} catch(e) {
-			console.log('catch an error', e);
+			return new Error('catch an error', e);
 		}	
 	}
 
+	/*
+     * searches for inputed word to be highlighted
+     * @requires `el` supplied
+    */ 
+
+	async matchHighlightedWord() {
+		const t = await this.paragraph.getText();
+		const newStr = JSON.stringify(t);
+		const count = (newStr.match(/Lorem|lorem|Lörem/gi) || []).length;
+		return count;
+	}
 
 
 }
