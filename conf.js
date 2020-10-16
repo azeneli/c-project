@@ -22,10 +22,10 @@ exports.config = {
     framework: 'jasmine',
     suites: {
         vueDemoForm: ['specs/vueDemo/vueDemoFormSpec.js'],
-        markjsConfigurator: ['specs/markjsConfigurator/markjsSpec.js'],
+        markjsConfigurator: ['specs/markJsConfigurator/markjsSpec.js'],
         both: [
             'specs/vueDemo/vueDemoFormSpec.js',
-            'specs/markjsConfigurator/markjsSpec.js',    
+            'specs/markJsConfigurator/markjsSpec.js',    
         ]
     },
     seleniumAddress: 'http://localhost:4444/wd/hub',
